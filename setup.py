@@ -30,7 +30,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Viktor Nagy',
     author_email='v@pulilab.com',
-    url='https://github.com/nagyv/django-collectform',
+    url='https://github.com/pulilab/django-collectform',
     packages=[
         'collectform',
     ],
