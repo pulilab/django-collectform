@@ -1,0 +1,5 @@
+A new distribution request was received.
+
+{% for key, value in data.items %}
+{{key}}: {{value}}
+{% endfor %}

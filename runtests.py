@@ -26,7 +26,15 @@ try:
         ),
         SITE_ID=1,
         NOSE_ARGS=['-s'],
-        COLLECTFORM_RELATED_MODEL = ('auth', 'user')
+        COLLECTFORM_RELATED_MODEL = ('auth', 'user'),
+        PASSWORD_HASHERS = ('django_plainpasswordhasher.PlainPasswordHasher', ),
+        CACHES = {
+            'default': {
+                'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+                'LOCATION': 'unique-snowflake'
+            }
+        },
+        EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     )
 
     try:

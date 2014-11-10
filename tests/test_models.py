@@ -13,7 +13,9 @@ import os
 import shutil
 import unittest
 
+from django.core import mail
 from django.contrib.sites.models import Site
+from django.test.utils import override_settings
 from collectform import models
 
 
@@ -61,6 +63,14 @@ class TestCollectform(unittest.TestCase):
         )
         dr.vidzios.create(vidzio=site)
         assert dr.vidzios.count() == 1
+
+    @override_settings(MANAGERS=(('Mr. Doge', 'doge@example.com'),))
+    def test_saving_sends_email(self):
+        dr = models.DistributionRequests.objects.create(
+            name='Doge',
+            email='doge@example.com',
+        )
+        assert len(mail.outbox) == 1
 
     def tearDown(self):
         pass
