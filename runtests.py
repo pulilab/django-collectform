@@ -18,8 +18,15 @@ try:
             "django.contrib.sites",
             "collectform",
         ],
+        MIDDLEWARE_CLASSES = (
+            'django.middleware.common.CommonMiddleware',
+            'django.contrib.sessions.middleware.SessionMiddleware',
+            'django.contrib.auth.middleware.AuthenticationMiddleware',
+            'django.contrib.messages.middleware.MessageMiddleware',
+        ),
         SITE_ID=1,
         NOSE_ARGS=['-s'],
+        COLLECTFORM_RELATED_MODEL = ('auth', 'user')
     )
 
     try:

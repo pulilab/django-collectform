@@ -32,4 +32,4 @@ Then use it in a project::
 Features
 --------
 
-* TODO
+* Required setting: `COLLECTFORM_RELATED_MODEL` used by `ContentTypeManager.get_by_natural_key`
