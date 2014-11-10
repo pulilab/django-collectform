@@ -41,6 +41,7 @@ class Vidzios(models.Model):
     vidzio = generic.GenericForeignKey('content_type', 'object_id')
 
 
+# We might have to move this into the view, to have vidzios attached when it's called
 def mail_request_to_managers(sender, instance, created, **kwargs):
     if created:
         message = render_to_string('emails/request_arrived.txt', {
