@@ -27,7 +27,7 @@ Install django-collectform::
 
 Then use it in a project::
 
-    import django-collectform
+    import collectform
 
 Features
 --------
