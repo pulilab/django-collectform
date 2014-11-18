@@ -53,3 +53,4 @@ class TestCollectformView(unittest.TestCase):
         assert resp.status_code == 200
         assert resp.data['status'] == 'success'
         assert models.Vidzios.objects.count() == 1
+

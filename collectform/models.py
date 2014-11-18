@@ -22,6 +22,9 @@ class DistributionRequests(TimeStampedModel):
     topics = models.TextField(verbose_name='Target topics', default='', blank=True)
     urls = models.TextField(verbose_name='Topic proxy urls', default='', blank=True)
 
+    def __unicode__(self):
+        return u'Request by: %s on %s' % (self.name, self.created)
+
     def to_mail(self):
         data = {}
         field_keys = self._meta.get_all_field_names()

@@ -8,7 +8,7 @@ from .forms import DistributionRequestForm
 def handle_post(request):
     response = {'status': 'error'}
     status_code = 400
-    data = request.POST.copy()
+    data = request.DATA
     data.update({
         'name': request.user.get_full_name(),
         'email': request.user.email,
@@ -18,7 +18,7 @@ def handle_post(request):
     vidzios = data['vidzios']
     del data['vidzios']
 
-    form = DistributionRequestForm(data)
+    form = DistributionRequestForm(data=data)
     if form.is_valid():
         dr = form.save()
         response['status'] = 'success'

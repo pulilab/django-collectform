@@ -8,5 +8,6 @@ class DistributionRequestAdmin(admin.ModelAdmin):
     inlines = [
         VidziosInline
     ]
+    list_display = ['name', 'email', 'created']
 
 admin.site.register(DistributionRequests, DistributionRequestAdmin)
