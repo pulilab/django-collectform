@@ -33,7 +33,6 @@ class DistributionRequests(TimeStampedModel):
             if direct:
                 data[field.verbose_name] = getattr(self, key)
             else:
-                import ipdb; ipdb.set_trace()
                 data[field.model.__name__] = ',\n\t'.join(map(str, getattr(self, key).all()))
         return data
 
