@@ -3,6 +3,7 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .forms import DistributionRequestForm
+from .models import mail_request_to_managers
 
 @api_view(['POST'])
 def handle_post(request):
@@ -31,6 +32,7 @@ def handle_post(request):
                     'content_type': ct,
                     'object_id': vidzio_id,
                 })
+        mail_request_to_managers(sender=None, instance=dr, created=True)
     else:
         response['errors'] = form.errors
     return Response(response, status=status_code)

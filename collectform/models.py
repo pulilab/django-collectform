@@ -33,7 +33,8 @@ class DistributionRequests(TimeStampedModel):
             if direct:
                 data[field.verbose_name] = getattr(self, key)
             else:
-                data[field.model.__name__] = ',\n\t'.join(getattr(self, key).all())
+                import ipdb; ipdb.set_trace()
+                data[field.model.__name__] = ',\n\t'.join(map(str, getattr(self, key).all()))
         return data
 
 
@@ -43,6 +44,9 @@ class Vidzios(models.Model):
     object_id = models.PositiveIntegerField(null=True)
     vidzio = generic.GenericForeignKey('content_type', 'object_id')
 
+    def __unicode__(self):
+        return u'%s: %d' % (self.content_type.name, self.object_id)
+
 
 # We might have to move this into the view, to have vidzios attached when it's called
 def mail_request_to_managers(sender, instance, created, **kwargs):
@@ -51,4 +55,4 @@ def mail_request_to_managers(sender, instance, created, **kwargs):
             'data': instance.to_mail()
         })
         mail_managers('Distribution inquiry', message)
-models.signals.post_save.connect(mail_request_to_managers, sender=DistributionRequests)
+# models.signals.post_save.connect(mail_request_to_managers, sender=DistributionRequests)
